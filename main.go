@@ -8,6 +8,18 @@ import (
 	"strings"
 )
 
+// set variables for correct responses and total responses that we'll print at the end
+var correctCount = 0
+var totalCount = 0
+
+// function that calculates the score and percentage at the end of the quiz
+func score() {
+	if totalCount > 0 {
+		percentage := float64(correctCount) / float64(totalCount) * 100
+		fmt.Printf("You got %d out of %d questions correct. %.2f%%\n", correctCount, totalCount, percentage)
+	}
+}
+
 func main() {
 	// set the csv file into a variable and open it
 	file, err := os.Open("quiz.csv")
@@ -21,10 +33,6 @@ func main() {
 	reader := csv.NewReader(file)
 	// create a scanner to scan userInput
 	scanner := bufio.NewScanner(os.Stdin)
-
-	// set variables for correct responses and total responses that we'll print at the end
-	correctCount := 0
-	totalCount := 0
 
 	// read each line and break when we reach the end
 	for {
@@ -54,10 +62,6 @@ func main() {
 		// increment the total count
 		totalCount++
 	}
-
 	// after the last question, output number of correct answers / number of total question and percentage
-	if totalCount > 0 {
-		percentage := float64(correctCount) / float64(totalCount) * 100
-		fmt.Printf("You got %d out of %d correct. %.2f%%\n", correctCount, totalCount, percentage)
-	}
+	score()
 }
