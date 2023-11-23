@@ -44,7 +44,7 @@ func main() {
 		userInput := scanner.Text()
 
 		// compare the scanned user input to the correct answer
-		if strings.TrimSpace(userInput) == answer {
+		if strings.TrimSpace(strings.ToLower(userInput)) == strings.ToLower(answer) {
 			fmt.Println("Correct!")
 			// increment the correct answer count
 			correctCount++
