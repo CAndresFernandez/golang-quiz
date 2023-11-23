@@ -8,7 +8,6 @@ import (
 	"strings"
 )
 
-// create struct for questions
 func main() {
 	// set the csv file into a variable and open it
 	file, err := os.Open("quiz.csv")
